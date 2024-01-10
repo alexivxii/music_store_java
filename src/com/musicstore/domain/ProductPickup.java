@@ -9,7 +9,15 @@ public class ProductPickup extends AbstractProduct{
     private PickupOperatingMechanismType operatingMechanism; //manual/automatic
     private PickupDriverType driver; //belt/direct drive
 
-    public ProductPickup(int productId, String productName, String productPrice, int productStock, PickupOperatingMechanismType operatingMechanism, PickupDriverType driver) {
+    @Override
+    public String toString() {
+        return "ProductPickup{" +
+                "operatingMechanism=" + operatingMechanism +
+                ", driver=" + driver +
+                '}';
+    }
+
+    public ProductPickup(int productId, String productName, double productPrice, int productStock, PickupOperatingMechanismType operatingMechanism, PickupDriverType driver) {
         super(productId, productName, productPrice, productStock);
 
         this.operatingMechanism = operatingMechanism;

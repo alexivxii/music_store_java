@@ -9,16 +9,8 @@ public interface Product {
     public int getProductId();
     public String getProductName();
 
-    public String getProductPrice();
+    public double getProductPrice();
 
     public int getProductStock();
-
-    public void setProductId(int productId);
-
-    public void setProductName(String productName);
-
-    public void setProductPrice(String productPrice);
-
-    public void setProductStock(int productStock);
 
 }

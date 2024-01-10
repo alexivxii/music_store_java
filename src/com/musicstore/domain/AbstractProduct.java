@@ -8,10 +8,10 @@ public class AbstractProduct implements Product{
 
     private int productId;
     private String productName;
-    private String productPrice;
+    private double productPrice;
     private int productStock;
 
-    public AbstractProduct(int productId, String productName, String productPrice, int productStock) {
+    public AbstractProduct(int productId, String productName, double productPrice, int productStock) {
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
@@ -26,29 +26,12 @@ public class AbstractProduct implements Product{
         return productName;
     }
 
-    public String getProductPrice() {
+    public double getProductPrice() {
         return productPrice;
     }
 
     public int getProductStock() {
         return productStock;
     }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public void setProductPrice(String productPrice) {
-        this.productPrice = productPrice;
-    }
-
-    public void setProductStock(int productStock) {
-        this.productStock = productStock;
-    }
-
 
 }

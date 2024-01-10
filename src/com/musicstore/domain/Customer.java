@@ -21,32 +21,19 @@ public class Customer {
         return customerName;
     }
 
-    public void setCustomerName(int customerName) {
-        this.customerName = customerName;
-    }
 
     public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
 
     public String getCustomerAddress() {
         return customerAddress;
     }
 
-    public void setCustomerAddress(String customerAddress) {
-        this.customerAddress = customerAddress;
-    }
 
     public String getCustomerPhone() {
         return customerPhone;
-    }
-
-    public void setCustomerPhone(String customerPhone) {
-        this.customerPhone = customerPhone;
     }
 
     public void viewOrders(){
