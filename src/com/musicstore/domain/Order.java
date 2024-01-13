@@ -1,8 +1,10 @@
 package com.musicstore.domain;
 
+import com.musicstore.utils.OrderStatus;
+
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 
 //ToDo: multithreading on making order
@@ -10,15 +12,15 @@ import java.util.List;
 public class Order {
 
     private int orderId;
-    private Customer customer;
-    private String orderStatus; //pending, canceled, finished
+    private int customerId;
+    private OrderStatus orderStatus; //pending, canceled, finished
     private HashMap<AbstractProduct, Integer> itemMap; //item, qty
     private int totalPrice;
 
-    public Order(int orderId, Customer customer, String orderStatus) {
+    public Order(int orderId, int customerId) {
         this.orderId = orderId;
-        this.customer = customer;
-        this.orderStatus = orderStatus;
+        this.customerId = customerId;
+        this.orderStatus = OrderStatus.Pending;
     }
 
 
@@ -32,45 +34,36 @@ public class Order {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public int getCustomer() {
+        return customerId;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public String getOrderStatus() {
+    public OrderStatus getOrderStatus() {
         return orderStatus;
-    }
-
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
     }
 
     public HashMap<AbstractProduct, Integer> getItemMap() {
         return itemMap;
     }
 
-    public void setItemMap(HashMap<AbstractProduct, Integer> itemMap) {
-        this.itemMap = itemMap;
-    }
-
     public int getTotalPrice() {
         return totalPrice;
-    }
-
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
     }
 
     public void showAllOrderItems(){
 
         //show all order items and quantity
+
+        int i=0;
+        //for each pair in this.itemMap, do:
+        for (Map.Entry<AbstractProduct, Integer> entry : this.itemMap.entrySet()) {
+            AbstractProduct key = entry.getKey();
+            Integer value = entry.getValue();
+
+            i+=1;
+            System.out.println(i + ". " + key.getProductName() + " x" + value);
+        }
+
 
     }
 
@@ -78,22 +71,26 @@ public class Order {
 
         //add product or list of products to the order
 
-        itemMap.put((AbstractProduct) prod,qty);
+        if(this.itemMap == null)
+            this.itemMap = new HashMap<AbstractProduct, Integer>();
+
+        this.itemMap.put((AbstractProduct) prod,qty);
 
     }
 
-    public void removeProduct(Product prod){
+    //Todo: Maybe modify to remove by product name instead of whole obj as arg
+    public void removeProduct(AbstractProduct prod){
 
         //remove product from list of products
 
-        itemMap.remove(prod);
+        this.itemMap.remove(prod);
 
     }
 
     public void updateProductQty(Product prod, int qty){
 
         //modify product quantity from list of products
-        itemMap.replace((AbstractProduct) prod, qty);
+        this.itemMap.replace((AbstractProduct) prod, qty);
 
 
     }

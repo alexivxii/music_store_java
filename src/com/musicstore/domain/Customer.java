@@ -8,7 +8,7 @@ public class Customer {
     private String customerAddress;
     private String customerPhone;
 
-    public List<Order> orderHistory;
+    public ArrayList<Order> orderHistory;
 
     public Customer(int customerName, String customerId, String customerAddress, String customerPhone) {
         this.customerName = customerName;
@@ -42,8 +42,11 @@ public class Customer {
 
     }
 
-    public void placeOrder(){
+    public void placeOrder(Order order){
         //adds new Order to List: orderHistory
+
+        this.orderHistory.add(order);
+
     }
 
     //ToDo: maybe implement a listener to changer the status of the order??

@@ -34,4 +34,18 @@ public class AbstractProduct implements Product{
         return productStock;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractProduct that = (AbstractProduct) o;
+        return productId == that.productId;
+    }
+
+    @Override
+    public int hashCode() {
+        return productId;
+    }
+
 }
