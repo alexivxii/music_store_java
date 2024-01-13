@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import java.util.*;
 
 import com.musicstore.domain.*;
+import com.musicstore.exceptions.ProductAlreadyExistsException;
+import com.musicstore.exceptions.ProductOOSException;
 import com.musicstore.utils.OrderStatus;
 import com.musicstore.utils.PickupDriverType;
 import com.musicstore.utils.PickupOperatingMechanismType;
@@ -13,7 +15,7 @@ import org.junit.Test;
 public class TestOrder {
 
     @Test
-    public void testOrder(){
+    public void testOrder() throws ProductAlreadyExistsException, ProductOOSException {
 
         Order order1 = new Order(
                 1,

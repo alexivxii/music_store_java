@@ -15,6 +15,10 @@ public class AbstractProduct implements Product{
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
+
+        if(this.productStock < 0){
+            throw new IllegalArgumentException("Product stock cannot be negative");
+        }
         this.productStock = productStock;
     }
 
@@ -34,6 +38,14 @@ public class AbstractProduct implements Product{
         return productStock;
     }
 
+    public void updateStock(int newStock){
+
+        if(newStock<0){
+            throw new IllegalArgumentException("Product stock cannot be negative");
+        }
+        this.productStock = newStock;
+
+    }
 
     @Override
     public boolean equals(Object o) {

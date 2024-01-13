@@ -1,4 +1,6 @@
 package com.musicstore.domain;
+import com.musicstore.exceptions.OrderAlreadyExistsException;
+
 import java.util.*;
 
 public class Customer {
@@ -57,7 +59,11 @@ public class Customer {
 
     }
 
-    public void placeOrder(Order order){
+    public void placeOrder(Order order) throws OrderAlreadyExistsException {
+
+        if(this.orderHistory.contains(order)){
+            throw new OrderAlreadyExistsException("Order already exists");
+        }
         //adds new Order to List: orderHistory
 
         this.orderHistory.add(order);

@@ -3,6 +3,9 @@ package com.musicstore.tests;
 import com.musicstore.domain.Customer;
 import com.musicstore.domain.Order;
 import com.musicstore.domain.ProductPickup;
+import com.musicstore.exceptions.OrderAlreadyExistsException;
+import com.musicstore.exceptions.ProductAlreadyExistsException;
+import com.musicstore.exceptions.ProductOOSException;
 import com.musicstore.utils.PickupDriverType;
 import com.musicstore.utils.PickupOperatingMechanismType;
 import org.junit.Test;
@@ -10,7 +13,7 @@ import org.junit.Test;
 public class TestCustomer {
 
     @Test
-    public void testCustomer(){
+    public void testCustomer() throws OrderAlreadyExistsException, ProductAlreadyExistsException, ProductOOSException {
 
         Customer c1 = new Customer(
                 1,

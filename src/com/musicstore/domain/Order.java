@@ -1,5 +1,7 @@
 package com.musicstore.domain;
 
+import com.musicstore.exceptions.ProductAlreadyExistsException;
+import com.musicstore.exceptions.ProductOOSException;
 import com.musicstore.utils.OrderStatus;
 
 import java.util.HashMap;
@@ -67,8 +69,17 @@ public class Order {
 
     }
 
-    public void addProduct(Product prod, int qty){
+    public void addProduct(Product prod, int qty) throws ProductAlreadyExistsException, ProductOOSException {
 
+        //Todo: here i also have to verify if the qty<stock, otherwise exception
+
+        if(prod.getProductStock()==0) throw new ProductOOSException("Product is out of stock");
+        if(qty > prod.getProductStock()) throw new ProductOOSException("Quantity added is bigger than product stock");
+
+
+        if(this.itemMap.containsKey(prod)){
+            throw new ProductAlreadyExistsException("Product already exists");
+        }
         //add product or list of products to the order
 
         if(this.itemMap == null)
