@@ -58,6 +58,9 @@ public class TestOrder {
 
         order1.showAllOrderItems();
 
+        order1.finishOrder();
+        assertEquals(OrderStatus.Finished, order1.getOrderStatus());
+
     }
 
 }

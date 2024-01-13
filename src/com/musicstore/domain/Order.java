@@ -94,4 +94,23 @@ public class Order {
 
 
     }
+
+    public void cancelOrder(){
+
+        this.orderStatus = OrderStatus.Canceled;
+
+    }
+
+    public void finishOrder(){
+
+        this.orderStatus = OrderStatus.Finished;
+
+    }
+
+    public void showOrderStatus(){
+
+        System.out.println(this.orderStatus);
+    }
+
+
 }
