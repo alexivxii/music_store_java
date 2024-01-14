@@ -52,6 +52,20 @@ public class Order {
         return totalPrice;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order that = (Order) o;
+        return orderId == that.orderId;
+    }
+
+    @Override
+    public int hashCode() {
+        return orderId;
+    }
+
     public void showAllOrderItems(){
 
         //show all order items and quantity
@@ -71,25 +85,22 @@ public class Order {
 
     public void addProduct(Product prod, int qty) throws ProductAlreadyExistsException, ProductOOSException {
 
-        //Todo: here i also have to verify if the qty<stock, otherwise exception
-
         if(prod.getProductStock()==0) throw new ProductOOSException("Product is out of stock");
         if(qty > prod.getProductStock()) throw new ProductOOSException("Quantity added is bigger than product stock");
 
+        if(this.itemMap == null)
+            this.itemMap = new HashMap<AbstractProduct, Integer>();
 
         if(this.itemMap.containsKey(prod)){
             throw new ProductAlreadyExistsException("Product already exists");
         }
-        //add product or list of products to the order
 
-        if(this.itemMap == null)
-            this.itemMap = new HashMap<AbstractProduct, Integer>();
+
 
         this.itemMap.put((AbstractProduct) prod,qty);
 
     }
 
-    //Todo: Maybe modify to remove by product name instead of whole obj as arg
     public void removeProduct(AbstractProduct prod){
 
         //remove product from list of products

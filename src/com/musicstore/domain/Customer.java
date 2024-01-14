@@ -1,5 +1,6 @@
 package com.musicstore.domain;
 import com.musicstore.exceptions.OrderAlreadyExistsException;
+import com.musicstore.utils.OrderStatus;
 
 import java.util.*;
 
@@ -44,6 +45,20 @@ public class Customer {
 
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer that = (Customer) o;
+        return customerId == that.customerId;
+    }
+
+    @Override
+    public int hashCode() {
+        return customerId;
+    }
+
     public void viewOrders(){
 
         //show Orders from List: orderHistory
@@ -70,6 +85,27 @@ public class Customer {
 
     }
 
+    public void updateOrder(int id, OrderStatus status){
+
+        for(Order order : orderHistory){
+            if(order.getOrderId() == id){
+                if(status == OrderStatus.Canceled) order.cancelOrder();
+                if(status == OrderStatus.Finished) order.cancelOrder();
+            }
+        }
+
+    }
+
+    public void Order(int id){
+
+        for(Order order : orderHistory){
+            if(order.getOrderId() == id){
+                order.cancelOrder();
+            }
+        }
+
+    }
+
     public Order getOrderById(int id){
 
         Iterator<Order> iterator = this.orderHistory.iterator();
@@ -82,7 +118,5 @@ public class Customer {
         return null;
 
     }
-
-    //ToDo: maybe implement a listener to changer the status of the order??
 
 }

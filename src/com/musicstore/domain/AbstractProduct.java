@@ -4,8 +4,6 @@ import java.util.List;
 
 public class AbstractProduct implements Product{
 
-    //ToDo: need exception for negative stock
-
     private int productId;
     private String productName;
     private double productPrice;

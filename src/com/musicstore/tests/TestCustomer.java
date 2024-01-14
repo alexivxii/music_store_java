@@ -6,6 +6,7 @@ import com.musicstore.domain.ProductPickup;
 import com.musicstore.exceptions.OrderAlreadyExistsException;
 import com.musicstore.exceptions.ProductAlreadyExistsException;
 import com.musicstore.exceptions.ProductOOSException;
+import com.musicstore.utils.OrderStatus;
 import com.musicstore.utils.PickupDriverType;
 import com.musicstore.utils.PickupOperatingMechanismType;
 import org.junit.Test;
@@ -50,15 +51,16 @@ public class TestCustomer {
                     i,
                     "Pickup" + i,
                     i*100,
-                    i-5,
+                    i+1,
                     PickupOperatingMechanismType.Manual,
                     PickupDriverType.Belt
             );
 
+            //If productStock is 0, throws exception on addProduct
+            //if the qty on addProduct is bigger than the stock, throws exception
+
             order2.addProduct(tempProd, i);
         }
-
-        //logic kind of weird,
 
         c1.placeOrder(order1);
 
@@ -66,13 +68,14 @@ public class TestCustomer {
 
         c1.viewOrders();
 
+        c1.updateOrder(2, OrderStatus.Canceled);
 
         //Finding order by id and canceling it
-        Order temp = c1.getOrderById(2);
-
-        temp.cancelOrder();
-
-        c1.placeOrder(temp);
+//        Order temp = c1.getOrderById(2);
+//
+//        temp.cancelOrder();
+//
+//        c1.placeOrder(temp);
 
         c1.viewOrders();
 
