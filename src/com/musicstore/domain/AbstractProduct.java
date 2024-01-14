@@ -36,8 +36,9 @@ public class AbstractProduct implements Product{
         return productStock;
     }
 
-    public void updateStock(int newStock){
+    public void updateStock(int qty){
 
+        int newStock = this.productStock - qty;
         if(newStock<0){
             throw new IllegalArgumentException("Product stock cannot be negative");
         }

@@ -74,6 +74,20 @@ public class Customer {
 
     }
 
+    public void viewOrdersStatus(){
+
+        //show Orders from List: orderHistory
+
+        Iterator<Order> iterator = this.orderHistory.iterator();
+        while(iterator.hasNext()){
+            Order order = iterator.next();
+            System.out.println("Id " + order.getOrderId());
+            System.out.println("Status " + order.getOrderStatus());
+        }
+
+
+    }
+
     public void placeOrder(Order order) throws OrderAlreadyExistsException {
 
         if(this.orderHistory.contains(order)){
@@ -90,7 +104,7 @@ public class Customer {
         for(Order order : orderHistory){
             if(order.getOrderId() == id){
                 if(status == OrderStatus.Canceled) order.cancelOrder();
-                if(status == OrderStatus.Finished) order.cancelOrder();
+                if(status == OrderStatus.Finished) order.finishOrder();
             }
         }
 

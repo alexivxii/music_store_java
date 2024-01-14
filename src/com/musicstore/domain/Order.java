@@ -98,6 +98,7 @@ public class Order {
 
 
         this.itemMap.put((AbstractProduct) prod,qty);
+        prod.updateStock(qty);
 
     }
 
