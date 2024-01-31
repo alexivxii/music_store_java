@@ -17,7 +17,7 @@ public class Order {
     private int customerId;
     private OrderStatus orderStatus; //pending, canceled, finished
     private HashMap<AbstractProduct, Integer> itemMap; //item, qty
-    private int totalPrice;
+    private double totalPrice;
 
     public Order(int orderId, int customerId) {
         this.orderId = orderId;
@@ -48,7 +48,7 @@ public class Order {
         return itemMap;
     }
 
-    public int getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
@@ -100,6 +100,7 @@ public class Order {
         this.itemMap.put((AbstractProduct) prod,qty);
         prod.updateStock(qty);
 
+        this.totalPrice += prod.getProductPrice() * qty;
     }
 
     public void removeProduct(AbstractProduct prod){
