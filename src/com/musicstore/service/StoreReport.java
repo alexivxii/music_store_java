@@ -22,13 +22,13 @@ public class StoreReport {
     public MusicStore getMusicStore() {return this.musicStore;}
 
     public int getNumberOfClients(){
-        return musicStore.getCustomers().size();
+        return this.musicStore.getCustomers().size();
     }
 
     public int getNumberOfOrders(){
         Set<Order> orders = new HashSet<Order>();
 
-        for(Customer customer : musicStore.getCustomers()){
+        for(Customer customer : this.musicStore.getCustomers()){
             orders.addAll(customer.getOrderHistory());
         }
 
@@ -39,7 +39,7 @@ public class StoreReport {
         Set<Order> orders = new HashSet<Order>();
         double sum = 0.0;
 
-        for(Customer customer : musicStore.getCustomers()){
+        for(Customer customer : this.musicStore.getCustomers()){
             orders.addAll(customer.getOrderHistory());
         }
 
@@ -60,7 +60,7 @@ public class StoreReport {
             }
         });
 
-        for(Customer customer : musicStore.getCustomers()){
+        for(Customer customer : this.musicStore.getCustomers()){
             result.addAll(customer.getOrderHistory());
         }
 
@@ -74,7 +74,7 @@ public class StoreReport {
         Set<Order> orders = new HashSet<Order>();
         Set<Order> result = new HashSet<Order>();
 
-        for(Customer customer : musicStore.getCustomers()){
+        for(Customer customer : this.musicStore.getCustomers()){
             orders.addAll(customer.getOrderHistory());
         }
 
